@@ -1,0 +1,51 @@
+//  ( ---- https://leetcode.com/problems/sequential-digits/ ---- )
+
+//  (--- 1291. SEQUENTIAL DIGITS ---)
+
+
+class Solution {
+    public List<Integer> sequentialDigits(int low, int high) {
+      List<Integer> ans=new ArrayList();
+        int size_of_sequence = 8;          // no. of loops runs 
+        int incrementer = 11;              // output is like 123 , 234 , 456 (234 - 123)=111 ; (456 - 234)=111 ;    
+        int sequencial_digit = 1;          // current no. (assume)     
+        while(incrementer < high)
+        {
+            int initial_sequencial_digit = sequencial_digit; 
+            for(int i = 1; i <= size_of_sequence; i++)
+            {
+                sequencial_digit += incrementer;  
+                if(sequencial_digit >= low && sequencial_digit <=high)       // if condination false then go to line 21 
+                    ans.add(sequencial_digit);
+            }
+            sequencial_digit = incrementer + initial_sequencial_digit;
+            incrementer = incrementer*10+1;
+            size_of_sequence--;
+        }
+        return ans;
+    }    
+}
+
+// Example :-- (Low = 100 and high = 300)  output =[123 , 234]
+
+//  (----Another way----) 
+
+// class Solution {
+//     public List<Integer> sequentialDigits(int low, int high) {
+//        int start = 1, cur = 1, inc = 11, t = 8;
+//         List<Integer> ans = new ArrayList<>();
+//         while(cur <= high){
+//             for (int i = 0; i < t; i++){
+//                 cur += inc;
+//                 if (cur >= low && cur <= high) {
+//                     ans.add(cur);
+//                 }
+//             }
+//             inc = 10 * inc + 1;
+//             start = 10 * start + 10 - t;
+//             cur = start;
+//             t--;
+//         } 
+//         return ans;
+//     } 
+// }
