@@ -1,0 +1,24 @@
+// (--- https://leetcode.com/problems/longest-substring-without-repeating-characters/ ---)
+
+
+
+class Solution {
+    public int lengthOfLongestSubstring(String s) {
+        String longSubStrTillNow="";
+     int maxLength=-1;
+     if(s.isEmpty())          // If string s is empty then return 0;
+         return 0;
+     if(s.length()==1)       // If string s contains only 1 Char then return 1;
+         return 1;
+     
+     for(char ch : s.toCharArray())                      // agar String 2 or more than ho to take a Substring empty string and math.max fun.
+     {
+         String current = String.valueOf(ch);
+         if(longSubStrTillNow.contains(current))
+             longSubStrTillNow=longSubStrTillNow.substring(longSubStrTillNow.indexOf(current)+1); 
+        longSubStrTillNow=longSubStrTillNow+String.valueOf(ch);  
+        maxLength=Math.max(longSubStrTillNow.length(),maxLength);
+     }
+    return maxLength;
+    }
+}
