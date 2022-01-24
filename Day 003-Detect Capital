@@ -1,0 +1,51 @@
+// (--- https://leetcode.com/problems/detect-capital/ ---)
+
+//520. Detect Capital
+
+class Solution {
+    public boolean detectCapitalUse(String word) {
+        int n = word.length();
+        boolean isFirstUpper = Character.isUpperCase(word.charAt(0));
+        int upper = 0, lower = 0;
+
+        for (int i = 0; i < n; ++i) {
+            if (Character.isUpperCase(word.charAt(i))) {
+                ++upper;
+            } else {
+                ++lower;
+            }
+        }
+        return lower == n || upper == n || (isFirstUpper && lower == n - 1);
+    }
+}
+
+
+
+// Another way
+
+//  firstly checking word is less than 2 or not if yes then return "true" because if <2 means word is empty or a single char present ( capital or lower ) single letter doesn't 
+//  mean that it should be capital , it may lower case also.
+//  Now , Second Condition "If 0th position and 1th position is upper case then any of other position should not be lower case".
+//  Now , Third Condition "If 0th position is upper case then 1th position also upper case then it condition Satisfy condition Second but 0th position is upper case and others 
+//  should lower case if not return false 
+//  else return true;
+
+class Solution {
+    public boolean detectCapitalUse(String word) {
+        if(word.length() < 2) return true;
+        if(Character.isUpperCase(word.charAt(0)) && 
+	Character.isUpperCase(word.charAt(1))){
+            for(int i = 2; i < word.length(); i++){
+                if(Character.isLowerCase(word.charAt(i))) 
+		return false;
+            }
+        }
+        else{
+            for(int i = 1; i < word.length(); i++){
+                if(Character.isUpperCase(word.charAt(i)))
+		return false;
+            }
+        }
+        return true;
+    }
+}
