@@ -1,0 +1,39 @@
+//   ( --- https://www.codechef.com/CCMB2022/problems/MKEUNT --- )
+//   Problem Code :---  MKEUNT 
+
+/* package codechef; // don't place package name! */
+
+import java.util.*;
+import java.lang.*;
+import java.io.*;
+
+class Codechef
+{
+	public static void main (String[] args)
+	{
+	    Scanner input = new Scanner(System.in);
+	    int t = input.nextInt();
+	    int input_no;
+	    try{                                          // Used for Avoiding Runtime Error NZEC. 
+	    while (t>0){                                  // for testcase 
+	        input_no = input.nextInt();               // taking 
+	       System.out.print(input_no+" ");            // printing input number 
+	    while(input_no > 1) {                         
+	        if (input_no % 2 == 0){                   // when input number is even
+	            input_no = input_no/2;
+	            System.out.print(input_no+" ");
+	        }
+	        else {                                    //  when input number is odd 
+	            input_no = input_no *3 + 1;
+	            System.out.print(input_no+" ");
+	        }
+	    }
+	   }
+	    t--;
+	    }
+	    catch(Exception e){
+	        return;
+	    }
+	    
+	}
+}
