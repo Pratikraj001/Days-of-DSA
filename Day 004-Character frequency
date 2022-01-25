@@ -11,20 +11,20 @@ import java.io.*;
 	    Scanner input = new Scanner(System.in);
 	    String str = input.next();
 	    str.toLowerCase();
-	    int t = input.nextInt();
+	    int t = input.nextInt();                                 // testcase                                 
 	    int count = 0;
-	    try{
-	    while (t>0) {
-	        int Q = input.nextInt();
+	    try{                                                     // Runtime error :-- NZEC
+	    while (t>0) {                                  
+	        int Q = input.nextInt();                             // Q is position of the String whose copy to find before that Q
 	   //  char ch = str.charAt(Q-1);
 	   //  System.out.print(ch);
-	       for ( int i = 0 ; i < Q-1 ; i++){
-	           if ( str.charAt(i) == str.charAt(Q-1) ){
-	               count++;
+	       for ( int i = 0 ; i < Q-1 ; i++){                     
+	           if ( str.charAt(i) == str.charAt(Q-1) ){          // check char at (Q-1) index is equal to char at i index 
+	               count++;                                      // if, if condition satisfy count++; 
 	           }
 	       }
 	       System.out.println(count);
-	       count =0 ;
+	       count = 0 ;                                            // here when loop break,  then count should be zero for next testcase
 	    }
 	    t--;
 	    }
