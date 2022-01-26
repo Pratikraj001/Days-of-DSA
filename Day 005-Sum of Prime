@@ -1,0 +1,86 @@
+// ( --- https://www.codechef.com/CCMB2022/problems/PRIMADD --- )
+
+// Code Chef :-- PRIMADD.
+
+Issue : - Time exceeded.
+import java.util.*;
+
+class Codechef
+{
+	public static void main (String[] args)
+	{
+	     Scanner input = new Scanner(System.in);
+	     
+	     int t = input.nextInt();
+	     try{
+	     while( t > 0 ){
+	        int min = input.nextInt();
+	        int max = input.nextInt();
+	        int count, sum = 0;  
+ 
+            for(int number = min; number <= max; number++)  
+            {  
+            count = 0;  
+            for (int i = 2; i <= number/2; i++)  
+            {  
+    
+            if(number % i == 0)  
+            {  
+            count++;  
+            break;  
+            } 
+            } 
+            if(count == 0 && number != 1 )  
+            {  
+            sum += number;  
+            }   
+            }  
+            System.out.println(sum);  
+
+	     }
+	     t--;
+	     }
+	     catch (Exception e){
+	         return;
+	     }
+	}
+}
+
+
+Another way 
+
+// Issue :-- Time Exceeded
+
+import java.util.*;
+
+class Codechef
+{
+	public static void main (String[] args) throws java.lang.Exception
+	{
+	     Scanner input = new Scanner(System.in);
+	     
+	     int t = input.nextInt();
+	     while( t > 0 ){
+	        int min = input.nextInt();
+	        int max = input.nextInt();
+	        int flag = 0 ,sum=0;
+	        
+	        for (int i = min ; i <= max ; i++ ){
+	            if (i == 0 || i == 1){
+	                continue;
+	            }
+	            for ( int j = 2 ; j <=  i/2 ; j++){
+	                if ( i % j == 0){
+	                	flag = 1;
+	                	break;      
+	                }
+	                flag = 0;
+	            }
+	                if ( flag == 0){
+	                    sum+=i;
+	                }  
+	        }
+	     }
+	     t--;
+	}
+}
