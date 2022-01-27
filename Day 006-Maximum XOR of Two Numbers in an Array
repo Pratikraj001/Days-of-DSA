@@ -1,0 +1,92 @@
+// ( --- https://leetcode.com/problems/maximum-xor-of-two-numbers-in-an-array/ --- )
+
+// 421. Maximum XOR of Two Numbers in an Array   [leet code]
+
+// Time Complexity :-- O(n);
+
+class Solution {
+    public class TrieNode{
+        TrieNode[] children;
+        TrieNode(){
+            children = new TrieNode[2];
+        }
+    }
+    
+    public TrieNode root;
+    public int findMaximumXOR(int[] nums) {
+        root = new TrieNode();
+        
+        // insert all the values in the Trie
+        for(int num : nums){
+            insert(num);
+        }
+        
+        //start looking for better answer
+        int max = Integer.MIN_VALUE;
+        for(int num : nums){
+            int temp = find(num);
+            max = Math.max(temp, max);
+        }
+        return max;
+    }
+    
+    public int find(int number){
+        TrieNode current = root;
+        int bitIdx = 31;
+        int ans = 0;
+        
+        while(bitIdx >= 0){
+            int mask = 1<<bitIdx;
+            int currentBitValue = (mask&number) == 0? 0 : 1;
+            int requiredBitValue = currentBitValue^1;
+            
+            TrieNode node = current;
+            //if an alternate path is present, go to that direction to maximise the xor answer
+            if(node.children[requiredBitValue] != null){
+                ans += mask;
+                current = node.children[requiredBitValue];
+            }else{
+                //follow the same path
+                current = node.children[currentBitValue];
+            }
+            bitIdx--;
+        }
+        return ans;
+    }
+    
+    public void insert(int number){
+        TrieNode current = root;
+        int bitIdx = 31;
+        
+        while(bitIdx >= 0){
+            //find the bit
+            int mask = 1<<bitIdx; //this gives 2^bitIdx number, << is equivalent to 1 left shift/or multiply by 2
+            int bitValue = (mask&number) == 0? 0 : 1;
+            
+            TrieNode node = current.children[bitValue];
+            if(node == null){
+                node = new TrieNode();
+                current.children[bitValue] = node;
+            }
+            current = node;
+            bitIdx--;
+        }
+    }
+}
+
+// Time Complexity :-- O(n^2);
+
+// class Solution {
+//     public int findMaximumXOR(int[] nums) {
+//         int maxXor = 0;
+//         for (int i = 0 ; i < nums.length ; i++){
+//             for( int j = i+1 ; j < nums.length ; j++){
+//                  // maxXor = Math.max(maxXor,
+//                  //        nums[i] ^ nums[j]);
+//                 if ((nums[i] ^ nums[j]) > maxXor)
+//                     maxXor = maxXor;
+//             }
+//         }
+//         return maxXor;
+//     }
+// }
