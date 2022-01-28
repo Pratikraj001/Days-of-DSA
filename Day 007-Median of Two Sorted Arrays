@@ -1,0 +1,49 @@
+// ( --- https://leetcode.com/problems/median-of-two-sorted-arrays/ --- )
+
+//  4. Median of Two Sorted Arrays
+
+class Solution {
+    public double findMedianSortedArrays(int[] nums1, int[] nums2) {
+        int m = nums1.length;int n = nums2.length;
+        int sum = m+n;
+        int[] a = new int[m+n];
+        int i=0;int j=0;int k=0;
+        while(i<m && j<n){
+            if(nums1[i]>nums2[j]){
+                a[k++]=nums2[j++];
+            }
+            else{
+                a[k++]=nums1[i++];
+            }
+        }
+        for(;i<m;i++){
+            a[k++]=nums1[i];
+        }
+        for(;j<n;j++)
+        {a[k++]=nums2[j];
+        }
+        if(sum%2==0){
+            return (a[(sum/2)-1]+a[(sum/2)])/2.0;
+        }
+        else{return a[sum/2];}
+    }
+}
+
+// not for if nums1 [n] > nums2[m];
+
+// class Solution {
+//     public double findMedianSortedArrays(int[] nums1, int[] nums2) {
+//         int a = nums1.length;
+//         int c1 = nums1.length + nums2.length;
+//         int [] c = new int[c1];
+//         double a1 =0 ;
+//         if ( nums1[a-1 ]  < nums2[0]){
+//             System.arraycopy( nums1 , 0 , c, 0, nums1.length );
+//             System.arraycopy( nums2 , 0 , c , nums1.length , nums2.length );
+//             System.out.print(Arrays.toString(c));
+//             if (c1 % 2 == 1)
+//              a1 =  (c[c1/2] + c[c1/2 + 1]) / 2;
+//              return a1;
+//         }
+//     }
+// }
