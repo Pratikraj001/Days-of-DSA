@@ -38,7 +38,7 @@ class Solution {
 			
 			// update res
 			res = res * 10 + (s.charAt(i++) - '0');
-		}
+		 }
 		return sign * res;
     }
 }
