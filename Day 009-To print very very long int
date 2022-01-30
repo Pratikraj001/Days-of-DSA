@@ -1,0 +1,45 @@
+public class Permutation_Xor_Sum
+{
+		static long par(long g)                 // this used to manage very very long int.
+		{
+			long lp = 0;
+			long gr = 0;
+			while(true)
+			{
+				if(g%2 == 0)
+				{
+					lp += (1 << gr);
+				}
+				g /= 2;
+				gr++;
+				if(g <= 0)
+				{
+					break;
+				}
+			}
+			return lp;
+		}
+	public static void main(String[] args) throws java.lang.Exception
+	{
+		Scanner sc = new Scanner(System.in);
+    int test = sc.nextInt();
+		while(test-- > 0)
+		{
+			long a =290120222;// sc.nextLong();
+			long ans = 0;
+			while(a > 0)
+			{
+				long mo = par(a);
+				long mi = a;
+				if((mi&(mi+1)) == 0)
+				{
+					mi--;
+				}
+				long re = ((mi*(mi+1))/2) - ((mo*(mo-1))/2);
+				ans += (re*2);
+				a = mo-1;
+			}
+			System.out.println(ans);
+		}
+	}
+}
