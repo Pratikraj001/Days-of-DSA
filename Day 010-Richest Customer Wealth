@@ -1,0 +1,39 @@
+// ( --- https://leetcode.com/problems/richest-customer-wealth/ --- )
+
+// 1672. Richest Customer Wealth
+
+  Time Complexity :--- O(M*N);
+  
+// class Solution {
+//     public int maximumWealth(int[][] accounts) {
+//         int max = Integer.MIN_VALUE;
+        
+//         for (int i = 0 ; i < accounts.length; i++){                  // Iterate over each accounts
+//             int sum = 0;                                             // For each account, initialize the sum to 0
+//             for ( int j = 0 ; j < accounts[0].length ; j++ ){        
+                
+//                 sum += accounts[i][j];                               // Add the money in each bank
+//             }
+//             max = Math.max(sum , max);                               // Update max
+//         }
+//         return max;
+//     }
+// }
+
+
+Time Complexity :--- O(N);
+
+class Solution {
+    public int maximumWealth(int[][] accounts) {
+        int max = Integer.MIN_VALUE;
+        int sum;
+        for(int[] account: accounts){
+            sum = 0;
+            for(int money: account){
+                sum += money;  
+            }
+            max = Math.max(sum, max);
+        }
+        return max;
+    }
+}
