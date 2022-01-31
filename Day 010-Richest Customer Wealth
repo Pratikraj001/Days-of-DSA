@@ -21,7 +21,7 @@
 // }
 
 
-Time Complexity :--- O(N);
+Time Complexity :--- O(M*N);
 
 class Solution {
     public int maximumWealth(int[][] accounts) {
