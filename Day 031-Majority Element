@@ -1,0 +1,35 @@
+// ( --- https://leetcode.com/problems/majority-element/ --- )
+
+
+// 169. Majority Element
+  
+  
+class Solution {
+    public int majorityElement(int[] nums) {
+        int n = nums.length;
+        int com_num = n/2;
+        Arrays.sort(nums);
+        // for(int  i = 0 ; i < n ; i++){
+        //     System.out.print(nums[i]+" ");
+        // }
+        int count = 1;
+        int ans = 0 , elem = 0;
+        if(n == 1)
+            return nums[0];
+        for(int i = 0 ; i < n-1 ; i++){
+            if (nums[i] == nums[i+1]){
+                count++;
+            }
+            else if (nums[i] != nums[i+1]){
+                count = 1;
+            }
+            if(count > ans && count > com_num){
+                ans = count;
+                elem = nums[i];
+                System.out.print(elem);
+            }
+        }
+        return elem;
+        
+    }
+}  
