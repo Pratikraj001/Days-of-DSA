@@ -1,0 +1,19 @@
+// ( --- https://leetcode.com/problems/excel-sheet-column-number/ --- )
+
+
+// 171. Excel Sheet Column Number
+
+
+class Solution {
+    public int titleToNumber(String columnTitle) {
+        int ans = 0;
+        int len = columnTitle.length();
+        
+        for(int i = len - 1 ; i >= 0 ; i--){
+            ans += (int)Math.pow(26 , i)*(columnTitle.charAt(len - i - 1) - 64);
+        } 
+        
+       
+        return ans;
+    }
+}
