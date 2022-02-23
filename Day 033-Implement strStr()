@@ -1,0 +1,11 @@
+// ( --- https://leetcode.com/problems/implement-strstr/ --- )
+
+
+// 28. Implement strStr()
+
+
+class Solution {
+    public int strStr(String haystack, String needle) {
+       return haystack.indexOf(needle);
+    }
+}
