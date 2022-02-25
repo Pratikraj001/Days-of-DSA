@@ -1,0 +1,39 @@
+// ( --- https://leetcode.com/problems/compare-version-numbers/ --- )
+
+
+// 165. Compare Version Numbers
+
+
+class Solution {
+    public int compareVersion(String v1, String v2) {
+          int s=0,e=0;
+        int i=0,j=0;
+        
+        while(e<v1.length() || j<v2.length())
+        {
+            int val1=0,val2=0;
+            if(e<v1.length()){
+            while(e<v1.length() && v1.charAt(e)!='.')e++;
+                if(s<e)
+            val1 = Integer.parseInt(v1.substring(s,e));
+                s=e+1;
+            }
+            if(j<v2.length()){
+            while(j<v2.length()&&v2.charAt(j)!='.')j++;
+                if(i<j)                                  
+            val2 = Integer.parseInt(v2.substring(i,j));
+                i=j+1;
+            }
+            
+            if(val1<val2)
+                return -1;
+            
+            if(val1>val2)
+                return 1;
+            
+            e++;
+            j++;
+        }
+        return 0;
+    }
+}
