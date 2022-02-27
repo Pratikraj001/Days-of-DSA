@@ -1,0 +1,12 @@
+// ( --- https://leetcode.com/problems/sqrtx/ ---- )
+
+
+// 69. Sqrt(x)
+
+
+class Solution {
+    public int mySqrt(int x) {
+        int a = (int)Math.sqrt(x);
+        return a;
+    }
+}
