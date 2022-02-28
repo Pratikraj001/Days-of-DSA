@@ -1,0 +1,33 @@
+// ( --- https://leetcode.com/problems/happy-number/ --- )
+
+
+// 202. Happy Number
+
+
+class Solution {
+    public boolean isHappy(int n) {
+        if(n<9 && n != 1 && n != 7)
+            return false;
+        else{
+            int ans = 0 , ans1 = 0;
+            while(true){
+                String str = ""+n;
+                int s = str.length();
+                while(s-- > 0){
+                    int a = n%10;
+                    n = n/10;
+                    ans += (int)Math.pow(a,2);
+                }
+                
+                n = ans;
+                ans1 = n;
+                ans = 0;
+                if(ans1 < 10 )
+                	break;
+            }
+            if(ans1 == 1 || ans1 == 7)
+                return true;
+        }
+        return false;
+    }
+}
