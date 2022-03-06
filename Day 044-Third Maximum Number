@@ -1,0 +1,23 @@
+// ( --- https://leetcode.com/problems/third-maximum-number/ --- )
+
+
+// 414. Third Maximum Number
+
+
+class Solution {
+    public int thirdMax(int[] nums) {
+        Arrays.sort(nums);
+        int count = 0;
+        int len = nums.length-1;
+        int value = nums[len];
+        for(int i=len; i>=0; i--){
+            if(nums[i] != value){
+                count += 1;
+                value = nums[i];
+            }
+            if(count == 2)
+                return value;
+        }
+        return nums[len];
+    }
+}
