@@ -21,3 +21,9 @@ class Solution {
         return res.reverse().toString();
     }
 }
+
+
+
+
+
+// Help from ( --- https://leetcode.com/problems/add-binary/discuss/1679423/Well-Detailed-Explaination-Java-C%2B%2B-Python-oror-Easy-for-mind-to-Accept-it --- )
