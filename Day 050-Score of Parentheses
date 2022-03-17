@@ -1,0 +1,49 @@
+// ( --- https://leetcode.com/problems/score-of-parentheses/ --- )
+
+
+// 856. Score of Parentheses
+
+
+class Solution {
+    public int scoreOfParentheses(String s) {
+    int cnt=0,scr=0;
+    boolean flag=false;
+    for(int i=0;i<s.length();i++){
+        if(s.charAt(i)=='('){
+            if(cnt==0)
+                cnt++;
+            else {
+                cnt=cnt*2;
+                }
+            flag=true;
+        }
+        else{
+            if(flag)
+                scr=scr+cnt;
+                flag=false;
+                cnt=cnt/2;
+        }
+    }
+    return scr;
+    }
+}
+
+
+// by hi malik;
+// class Solution {
+//     public int scoreOfParentheses(String s) {
+//         Stack<Integer> st = new Stack<>();
+//         int score = 0;
+//         for(int i = 0; i < s.length(); i++){
+//             char ch = s.charAt(i);
+//             if(ch == '('){
+//                 st.push(score);
+//                 score = 0;
+//             }
+//             else {
+//                 score = st.pop() + Math.max(2 * score, 1);
+//             }
+//         }
+//         return score;
+//     }
+// }
