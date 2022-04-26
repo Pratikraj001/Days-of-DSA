@@ -1,0 +1,48 @@
+https://leetcode.com/problems/next-greater-element-iii/
+
+
+class Solution {
+    public int nextGreaterElement(int n) {
+        String str = n+"";
+        int c = str.length()-1;
+        for(int i=str.length()-2; i>=0; i--){
+            c = i;
+            if(str.charAt(i) < str.charAt(i+1)){
+                break;
+            }
+        }
+        for(int i=str.length()-1; i>c; i--){
+            if(str.charAt(i) > str.charAt(c)){
+                String newStr = swap(str, i, c);
+                String greaterStr = reverse(newStr, c+1, newStr.length()-1);
+
+                try{
+                    return Integer.parseInt(greaterStr);
+                }catch(NumberFormatException ex){
+                    return -1;
+                }
+            }
+        }
+        
+        return -1;
+    }
+    
+    String reverse(String str, int i, int j){
+        StringBuilder sb = new StringBuilder(str);
+        while(i<j){
+            sb.setCharAt(i, str.charAt(j));
+            sb.setCharAt(j, str.charAt(i));
+            i++;
+            j--;
+        }
+        return sb.toString();
+    }
+    
+    String swap(String str, int i, int j){
+        StringBuilder sb = new StringBuilder(str);
+        sb.setCharAt(i, str.charAt(j));
+        sb.setCharAt(j, str.charAt(i));
+        
+        return sb.toString();
+    }
+}
