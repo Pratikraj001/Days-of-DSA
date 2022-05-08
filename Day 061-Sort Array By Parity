@@ -1,0 +1,21 @@
+// https://leetcode.com/problems/sort-array-by-parity/
+
+
+class Solution {
+    public int[] sortArrayByParity(int[] arr) {
+       int len = arr.length-1;
+		int narr[] = new int [len+1];
+		int k = 0 ;
+		for(int i = 0,j=0 ; i <= len ; i++) {
+			if(arr[i] % 2 != 0 ) {
+				narr[len-j] = arr[i];
+				j++;
+			}
+			else {
+				narr[k] = arr[i];
+				k++;
+			}
+		}
+		return narr;
+    }
+}
