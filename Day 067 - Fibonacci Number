@@ -1,0 +1,19 @@
+// https://leetcode.com/problems/fibonacci-number/
+
+
+class Solution 
+{   // take an auxilary space i.e, an integer array of size = 31
+    // as in the question only, the constraints are given
+    // 0 <= n <= 30    and we always take the size one more than the max input size = 30+1 = 31
+    int[] dp = new int[31];
+    
+	public int fib(int n)
+    {
+        if(n ==0 || n == 1)
+            return n;
+        else if(dp[n] != 0)
+            return dp[n];
+		else 
+            return dp[n] = fib(n - 1) + fib(n - 2);
+    }
+}
