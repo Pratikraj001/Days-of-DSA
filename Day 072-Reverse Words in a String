@@ -1,0 +1,32 @@
+// https://leetcode.com/problems/reverse-words-in-a-string/
+
+
+class Solution {
+    public String reverseWords(String s) {
+        String result= new String();
+        int i = 0;
+        int n = s.length();
+        while(i < n){
+            while(i < n && s.charAt(i) == ' ') i++;   // check ' _' is begin or end if yes ignore
+            
+            if(i >= n) break;                         
+            int j = i+1;                            
+            
+            while(j < n && s.charAt(j) != ' ') j++;     // iterate till the a word in a string
+            
+            String sub = s.substring(i,j);              // make substring from index i to j and store to sub
+            if(result.length() == 0)                    
+                result = sub;
+            else
+                result = sub+" "+result;                // it works like first in and last go in the string;
+            
+            i = j+1;
+            // System.out.println(sub);
+            // System.out.println(result);
+            
+        }
+        return result;
+    } 
+}
+
+t.c = O(n)
