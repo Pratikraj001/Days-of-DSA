@@ -1,0 +1,25 @@
+// https://leetcode.com/problems/convert-binary-number-in-a-linked-list-to-integer/
+
+
+/**
+ * Definition for singly-linked list.
+ * public class ListNode {
+ *     int val;
+ *     ListNode next;
+ *     ListNode() {}
+ *     ListNode(int val) { this.val = val; }
+ *     ListNode(int val, ListNode next) { this.val = val; this.next = next; }
+ * }
+ */
+class Solution {
+    public int getDecimalValue(ListNode head) {
+        int temp = head.val;
+        
+        while(head.next != null){                                     // ex [1,0,1]
+            temp = temp*2 + head.next.val;                            // if temp = 1 then temp = 1 * 2 + 0; = 2 if head = last element temp = 2*2+1 = 5;
+            head = head.next;                                         // 
+            
+        }
+        return temp;
+    }
+}
