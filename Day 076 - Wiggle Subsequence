@@ -1,7 +1,7 @@
 // ( --- https://leetcode.com/problems/wiggle-subsequence/ --- )
 
 
-public class Solution {
+public class Solution {                                            // t.c :-    O(n)
     public int wiggleMaxLength(int[] nums) {
         if (nums.length == 0) return 0;
         int up = 1, down = 1;
@@ -14,3 +14,44 @@ public class Solution {
 }
 
 hint :- https://www.youtube.com/watch?v=xtDu3jm5WsI&ab_channel=alGOds
+
+// others code 
+
+public int wiggle(int[] a) {                                              //t.c = O(n)
+    if(a.length < 2) return a.length;
+    
+    int i = 1; while(i < a.length && a[i] == a[i-1]) i++;
+    if(i == a.length) return 1;
+    
+    int c = 2;
+    boolean inc = a[i] > a[i-1];
+    while(i < a.length) {
+        if(inc) {
+            while(i < a.length && a[i] >= a[i-1]) i++;
+            if(i < a.length) c++; inc = false;
+        }
+        else {
+            while(i < a.length && a[i] <= a[i-1]) i++;
+            if(i < a.length) c++; inc = true;
+        }
+        
+    }
+    return c;
+}
+
+// DP like LIS
+public int wiggleDPSolution(int[] a) {                                              // t.c:- O(n*n)
+    if(a.length < 2) return a.length;
+    int inc[] = new int[a.length], dec[] = new int[a.length];
+    Arrays.fill(inc,1);
+    Arrays.fill(dec,1);        
+    int ans = 1;
+    for(int i=1;i<a.length;i++) {
+        for(int j=0;j<i;j++) {
+            if(a[j] < a[i]) inc[i] = Math.max(inc[i],1+dec[j]);
+            if(a[j] > a[i]) dec[i] = Math.max(dec[i],1+inc[j]);
+        }
+        ans = Math.max(ans,Math.max(inc[i],dec[i]));
+    }
+    return ans;
+}
