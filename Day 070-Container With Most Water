@@ -22,3 +22,27 @@ class Solution {
         return res;
     }
 }
+
+c++ code 
+
+class Solution {
+public:
+    int maxArea(vector<int>& height) {
+        int max = INT_MIN;
+        int l =0 , r = height.size()-1;
+        while(l < r){
+            int a = ((r+1)-(l+1)) * min(height.at(l) , height.at(r));
+            // cout<<a<<"\n";
+            if(a > max){
+               max =a;
+            }
+            if(height.at(l) >= height.at(r)){
+                r--;
+            }
+           
+            else
+                l++;
+        }
+        return max;
+    }
+};
