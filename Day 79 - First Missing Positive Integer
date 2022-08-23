@@ -1,0 +1,27 @@
+// ( --- https://leetcode.com/problems/first-missing-positive/ --- )
+
+
+class Solution {
+public:
+    int firstMissingPositive(vector<int>& num) {
+        sort(num.begin() , num.end());               // sorting num increasing order
+        set<int>ans;                                 // create set of num so that we delete duplicate integers
+        for(int x : num){                            
+            ans.insert(x);
+        }
+        vector<int> nums(ans.begin(), ans.end());     // convert set into vector
+ 
+      
+        int j= 1;
+        for(int i = 0 ; i < nums.size() ; i++){       // 
+            if(nums[i] <= 0 ) continue;               // if less than 0 skip
+            else{
+                if(nums[i] != j) {                    // if j means +ve no not found in nums then break;
+                    break;
+                }
+                j++;                                   // else if found j means +ve no. increase
+            }
+        }
+        return j; 
+    }
+};
