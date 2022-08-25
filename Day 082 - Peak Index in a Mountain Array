@@ -1,0 +1,33 @@
+// ( --- https://leetcode.com/problems/peak-index-in-a-mountain-array/ --- )
+
+
+class Solution {
+public:
+    int peakIndexInMountainArray(vector<int>& arr) {
+        int n = arr.size();
+        int mx[n];
+        int mxn[n];
+        
+        mx[0] = arr[0];
+        mxn[n-1] = arr[n-1];
+        
+        int mxx = arr[0] , mxnn = arr[n-1];
+        
+        for(int i = 1 ; i < n ; i++){
+           mxx = max(mxx, arr[i]);
+            mx[i] = mxx;
+        }
+        for(int i = n-2 ; i >= 0 ; i--){
+            mxnn = max(mxnn , arr[i]);
+            mxn[i] = mxnn;
+        }
+        for(int i = 1 ; i < n-1 ; i++){
+            if(arr[i] == mxn[i] && arr[i] == mx[i]){
+                return i;
+            }
+        }
+        return 0;
+    
+    }  
+    
+};    
