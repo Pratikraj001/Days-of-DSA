@@ -1,0 +1,93 @@
+( --- https://leetcode.com/problems/spiral-matrix-ii/ --- )
+
+
+
+class Solution {
+public:
+    vector<vector<int>> generateMatrix(int n) {
+    // making 2d arrary
+        vector<vector<int>>ans(n,vector<int>(n));
+        //intialize pointer from top to bottow/down and from left to right
+        int top = 0 , down = n-1 , left = 0 , right = n-1;
+        // count increase for assigning value
+        int c = 1;
+        while(top <= down && left <= right){
+        // for left to right for 1st row
+            for(int i = left ; i <= right ; i++){
+                ans[top][i] = c;
+                c++;      
+            }
+            top++;
+           // for top to down for last col
+            for(int i = top ; i <= down ; i++){
+                ans[i][right] = c;
+                c++;
+            }
+            right--;
+            // for right to left for last row 
+            for(int i = right ; i >= left ; i--){
+                ans[down][i] = c;
+                c++; 
+            }
+            down--;
+            
+            // for down to top for 1st col
+            for(int i = down-1 ; i>= top ; i++){
+                ans[i][left] = c;
+                c++;
+            }
+            left++;            
+        }
+        return ans;
+    }
+};
+
+
+
+// class Solution {
+// public:
+//     vector<vector<int>> generateMatrix(int n) {
+        
+//       vector<vector<int>>v(n,vector<int>(n));  
+        
+//       int a=0;
+//       int b=n-1;
+//       int c=n-1;
+//       int d=0;
+        
+//         int z=1;
+        
+//         while(a<=c && d<=b)
+//         {  
+            
+//             for(int i=d;i<=b;i++)
+//             {
+//                 v[a][i]=z;
+//                 z++;
+//             }
+//             a++;
+             
+//             for(int i=a;i<=c;i++)
+//             {
+//                 v[i][b]=z;
+//                 z++;
+//             }
+//             b--;
+            
+//             for(int i=b;i>=d;i--)
+//             {
+//                 v[c][i]=z;
+//                 z++;
+//             }
+//             c--;
+            
+//             for(int i=c;i>=a;i--)
+//             {
+//                 v[i][d]=z;
+//                 z++;
+//             }           
+//             d++;           
+//         }
+//     return v;      
+//     }
+// };
