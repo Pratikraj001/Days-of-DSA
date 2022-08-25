@@ -1,0 +1,28 @@
+// ( --- https://leetcode.com/problems/ransom-note/ --- )
+
+
+
+class Solution {
+public:
+    bool canConstruct(string ransomNote, string magazine) {
+        int freq[28] = {0};
+        int freq1[28] ={0};
+        
+        for(int i = 0 ; i < magazine.length() ; i++){
+           
+            freq[ magazine[i]-96]++;
+        }
+        for(int i = 0 ; i < ransomNote.length() ; i++){
+
+            freq1[ransomNote[i]-96]++;
+        }
+        for(int i = 1 ; i < 27 ; i++){
+            // cout<<freq1[i]<<" "<<freq[i]<<" "<<i;
+            if(freq1[i] > freq[i]){
+                return false;
+            }
+            // cout<<"\n";
+        }
+        return true;
+    }
+};
