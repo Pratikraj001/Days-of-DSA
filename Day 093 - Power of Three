@@ -1,0 +1,46 @@
+// ( --- https://leetcode.com/problems/power-of-three/ --- )
+
+
+
+class Solution {
+public:
+    // double log_a_to_base_b(int a, int b){
+    // return log2(a) / log2(b);
+    // }
+    
+//     bool isPowerOfThree(int n) {
+        
+//         if(n<=0)
+//             return false; //if value of n is negative or 0 it is definitely not power of 3 
+//         double x = log10(n)/log10(3);
+//         if(x==(int)x)
+//             return true;
+//         return false;
+//     }
+
+    bool isInteger(double N)
+    {
+
+        // Convert float value
+        // of N to integer
+        int X = N;
+
+        double temp2 = N - X;
+
+        // If N is not equivalent
+        // to any integer
+        if (temp2 > 0) {
+            return false;
+        }
+        return true;
+    }
+    bool isPowerOfThree(int n) {
+        // 3^x = n;
+        // STEP 1 : - Apply log on both sides so that x which is in power of 3 comes ahead of 3
+        // xlog10(3) = log10(n);
+        // STEP 2 : -  divide log10(n) with log10(3)
+        // x = log10(n)/log10(3);
+        if(n<=0)return false;
+        return isInteger((log10(n) / log10(3)));
+    }
+};
