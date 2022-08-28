@@ -1,0 +1,56 @@
+// ( --- https://leetcode.com/problems/maximum-gap/ --- )
+
+
+
+class Solution {
+public:
+    int maximumGap(vector<int>& nums) {
+          // int n = nums.size();
+//         if(n <2){
+//             return 0;
+//         }
+        
+//         sort(nums.begin(),nums.end());
+//         int mx = INT_MIN;
+//         for(int j = 1; j < n ; j++){
+//             mx = max(mx,nums[j]-nums[j-1]);
+           
+//         }
+//         return mx;
+        
+        
+         int n = nums.size();
+        if(n<2)
+            return 0;
+        int mini = *min_element(nums.begin(),nums.end());
+        int maxi = *max_element(nums.begin(),nums.end());
+        if(n==2){
+            return maxi-mini;
+        }
+        int interval = ceil((double(maxi)-double(mini))/(double)(n-1));
+        // cout<<interval<<endl;
+        if(interval==0){
+            return 0;
+        }
+        vector<int>bmax(n-1,-1),bmin(n-1,maxi+1);
+        for(int i:nums){
+            if(i==mini or i==maxi)
+                continue;
+            int bindex = (i-mini)/interval;
+            bmax[bindex] = max(bmax[bindex],i);
+            bmin[bindex] = min(bmin[bindex],i);
+        }
+        int prev = mini;
+        int ans =0;
+        for(int i=0;i<n-1;i++){
+            if(bmax[i]==-1 or bmin[i]==maxi+1){
+                continue;
+            }
+            // cout<<"cheking for" << i<<endl;
+            ans = max(ans,bmin[i]-prev);
+            prev = bmax[i];
+        }
+        ans = max(ans,maxi-prev);
+        return ans;
+    }
+};
