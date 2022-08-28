@@ -1,0 +1,45 @@
+// ( --- https://leetcode.com/problems/reach-a-number/ ---)
+
+
+
+class Solution {
+public:
+    int reachNumber(int target) {
+//         int pointer = 0;
+//         int step = 0;
+//         while(pointer != target){
+//             // int step = 0;
+//             if(pointer + step +1 < target){
+//                 step++;
+//                 pointer = pointer+step;
+//             }
+//             if(pointer + step +1 > target){
+//                 step++;
+//                 pointer = pointer-step;
+//             }
+//             if(pointer + step + 1 == target){
+//                 step++;
+//                 pointer = pointer+step;
+//             }
+            
+//         }
+//         return step;
+        
+        
+        int sum = 0;
+        int steps = 0;
+        target = abs(target);
+        
+        while(sum < target){
+            sum += steps;
+            steps++;
+        }
+        while((sum-target)%2 == 1){
+            sum += steps;
+            steps++;
+        }
+        
+        return steps-1;
+        
+    }
+};
