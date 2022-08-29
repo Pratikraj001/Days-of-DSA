@@ -1,0 +1,45 @@
+// ( --- https://leetcode.com/problems/search-a-2d-matrix/ --- )
+
+
+
+class Solution {
+public:
+    bool searchMatrix(vector<vector<int>>& matrix, int target) {
+        int i;
+        int n = matrix.size();
+        int n_C = matrix[0].size()-1;
+        for(i = 0 ;i < n ; i++){
+            
+            if(target <= matrix[i][n_C]){
+                i++;
+                break;
+            }
+            
+        }
+        // cout<<i;
+        
+        int low  = 0;
+        int high = n_C;
+        
+        bool search_Result = false;
+        while(low <= high){
+            // cout<<low<<" "<<high<<"\n";
+        
+            int mid = low+(high-low)/2;
+             // cout<<matrix[i-1][mid]<<"\n";
+            if(matrix[i-1][mid] == target){
+                return search_Result = true;
+            }
+            else if(matrix[i-1][mid] > target){
+                // cout<<-1;
+                high =mid-1;;
+            }
+            else{
+                low = mid+1;
+            }
+            
+        }
+        return search_Result;
+        
+    }
+};
