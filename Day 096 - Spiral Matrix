@@ -1,0 +1,44 @@
+// ( --- https://leetcode.com/problems/spiral-matrix/submissions/ --- )
+
+
+class Solution {
+public:
+    vector<int> spiralOrder(vector<vector<int>>& mx) {
+        int m = mx.size();
+        int n = mx[0].size();
+        vector<int>nums;
+        int top = 0, down = m-1 , left = 0 , right = n-1;
+        
+        while( nums.size() < n*m ){
+            for(int i = left ; i <= right && nums.size()<n*m ; i++){
+                int cell = mx[top][i];
+                nums.push_back(cell);
+                
+            }
+            top++;
+            for(int i = top ; i <= down && nums.size()<n*m; i++){
+                int cell = mx[i][right];
+                nums.push_back(cell);
+                
+            }
+            right--;
+
+            for(int i = right ; i >= left && nums.size()<n*m; i--){
+                cout<<i<<" ";
+                int cell = mx[down][i];
+                nums.push_back(cell);
+               
+            }
+            down--;
+            for(int i = down ; i >= top && nums.size()<n*m ; i--){
+                int cell = mx[i][left];
+                nums.push_back(cell);
+          
+            }
+            left++;
+            
+            // cout<<left <<" "<<right<<" "<<top<<" "<<down<<"\n";
+        }
+        return nums;
+    }
+};
