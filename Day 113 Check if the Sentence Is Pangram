@@ -1,0 +1,32 @@
+// ( --- https://leetcode.com/problems/check-if-the-sentence-is-pangram/ --- )
+
+
+class Solution {
+public:
+    bool checkIfPangram(string sentence) {
+        if(sentence.length() < 26){
+            return false;
+        }
+        // set<char> st;
+        // for(int i = 0 ; i < sentence.length() ; i++){
+        //     st.insert(sentence[i]);
+        // }
+        // for(char c = 'a' ; c <= 'z' ; c++){
+        //     auto pos = st.find(c);
+        //     if(pos == st.end()){
+        //         return false;
+        //     }
+        // }
+        // return true;
+
+        for(char c = 'a' ; c <= 'z' ; c++){
+             size_t found = sentence.find(c);
+             //cout<<found<<" ";
+             if(found == string::npos){
+                 return false;
+             }
+             
+        }
+        return true;
+    }
+};
