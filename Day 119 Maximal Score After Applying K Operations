@@ -1,0 +1,28 @@
+// ( --- https://leetcode.com/contest/weekly-contest-327/problems/maximal-score-after-applying-k-operations/ --- )
+
+
+#include <cmath>
+class Solution {
+public:
+    long long maxKelements(vector<int>& nums, int k) {
+        
+        priority_queue<int> pq;
+        
+        for (int i = 0; i < nums.size() ; i++) {
+            pq.push(nums[i]);
+        }
+        long long int score = 0;
+        
+        while(k--){
+            int c = pq.top();
+            cout<<c <<" ";
+            score += c;
+            pq.pop();
+            int temp = ceil((double)c/3);
+            // cout<<temp<<" ";// + (c%3 > 0)? 1 : 0;
+            pq.push(temp);
+            
+        }
+        return score;
+    }
+};
