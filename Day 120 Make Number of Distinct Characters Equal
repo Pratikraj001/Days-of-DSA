@@ -1,0 +1,42 @@
+// ( --- https://leetcode.com/contest/weekly-contest-327/problems/make-number-of-distinct-characters-equal/ --- )
+
+
+class Solution {
+public:
+    bool isItPossible(string word1, string word2) {
+
+        vector<int> v1(26,0);
+        vector<int> v2(26,0);
+        
+        for(int i=0;i<word1.size();i++){
+            v1[word1[i]-'a']++;
+        }
+        
+        for(int i=0;i<word2.size();i++){
+            v2[word2[i]-'a']++;
+        }
+        
+        for(int i=0;i<26;i++){
+            for(int j=0;j<26;j++){
+                if(v1[i]>0 && v2[j]>0){
+                    v1[i]--;
+                    v2[j]--;
+                    v2[i]++;
+                    v1[j]++;
+                int count1=0,count2=0;
+                for(int k=0;k<26;k++){
+                    if(v1[k]>=1)count1++;
+                    if(v2[k]>=1)count2++;
+                }
+                if(count1==count2)return true;
+                v1[i]++;
+                v2[j]++;
+                v2[i]--;
+                v1[j]--;
+                }
+            }
+        }
+        return false;
+        
+    }
+};
