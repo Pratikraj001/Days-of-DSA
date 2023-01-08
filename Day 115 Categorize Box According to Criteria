@@ -1,0 +1,27 @@
+// ( --- https://leetcode.com/contest/biweekly-contest-95/problems/categorize-box-according-to-criteria/ --- )
+
+
+class Solution {
+public:
+    string categorizeBox(long long int length,long long int width,long long int height, int mass) {
+        bool bulk = false , heavy = false;
+        long long int  volume = (length * width * height);
+        cout<<volume;
+        if(length >= 10000 || width >= 10000 || height >= 10000 || volume >= 1000000000){
+            bulk = true;
+        }
+        if(mass >= 100){
+            heavy = true;
+        }
+        if(heavy == true && bulk == true){
+            return "Both";
+        }
+        else if(heavy == false && bulk == false){
+            return "Neither";
+        }
+        else if(heavy == true){
+            return "Heavy";
+        }
+        return "Bulky";
+    }
+};
