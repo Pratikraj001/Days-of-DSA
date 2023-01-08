@@ -1,0 +1,30 @@
+// ( --- https://leetcode.com/contest/biweekly-contest-95/problems/find-consecutive-integers-from-a-data-stream/ --- )
+
+
+class DataStream {
+private:
+    int val = 0;
+    int flag = 0;
+    int count = 0;
+
+public:
+    DataStream(int value, int k) {
+        val = value;
+        flag = k;
+    }
+
+    bool consec(int num) {
+        if(num != val){
+            count = 0;
+        }
+        if(num == val){
+            count++;
+        }
+        return count >= flag?1:0;
+    }
+};
+/**
+ * Your DataStream object will be instantiated and called as such:
+ * DataStream* obj = new DataStream(value, k);
+ * bool param_1 = obj->consec(num);
+ */
