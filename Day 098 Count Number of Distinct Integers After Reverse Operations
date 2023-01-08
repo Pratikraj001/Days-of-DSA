@@ -1,0 +1,43 @@
+// ( --- https://leetcode.com/problems/count-number-of-distinct-integers-after-reverse-operations/ --- )
+
+class Solution {
+public:
+    vector<int> reverse(vector<int> &nums , int n){
+
+        // reverse(nums.begin() , nums.end());
+        for(int i = 0 ; i < n ; i++){
+            // int size = sizeof nums[i];
+            int rev_num = 0;
+            int temp = nums[i];
+            while (temp > 0) {
+                rev_num = rev_num * 10 + temp % 10;
+                temp = temp / 10;
+            }
+           
+            nums.push_back(rev_num);
+        }
+
+        return nums;
+    }
+    int countDistinctIntegers(vector<int>& nums) {
+        int n = nums.size();
+        reverse(nums,n );
+        
+        // for(int i =0 ; i < nums.size() ;i++){
+        //     cout<<nums[i]<<" ";
+        // }
+        // set<int> st;
+        // for(auto it: nums){
+        //     st.insert(nums[it]);
+        // }
+        // return st.size();
+        // return 3;
+        vector<int>::iterator ip;
+  
+        int count;
+        sort(nums.begin(), nums.end());
+        count = distance(nums.begin(),unique(nums.begin(), nums.begin() + nums.size()));
+        return count;
+    }
+    
+};
