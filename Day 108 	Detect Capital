@@ -1,0 +1,25 @@
+// ( --- https://leetcode.com/problems/detect-capital/ --- )
+
+
+class Solution {
+public:
+    bool detectCapitalUse(string word) {
+        int upperCase = 0, lowerCase = 0, len = word.length();
+        for(int i = 0 ; i < len ; i++){
+            if(word[i] >= 65 && word[i] <= 90)
+                upperCase++;
+            else 
+                lowerCase++;
+        }
+        if(lowerCase == len){
+            return true;
+        }
+        else if(word[0] >= 'A' && word[0] <= 'Z' && lowerCase == len-1){
+            return true;
+        }
+        else if(upperCase == len){
+            return true;
+        }
+        return false;
+    }
+};
