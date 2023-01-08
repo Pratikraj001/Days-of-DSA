@@ -1,0 +1,55 @@
+// ( --- https://leetcode.com/problems/remove-stones-to-minimize-the-total/description/ --- )
+
+
+class Solution {
+public:
+    int minStoneSum(vector<int>& piles, int k) {
+        // sort(piles.begin(),piles.end());
+        // int last_i = piles.size() - 1;
+        // while(k){
+            
+        //     if(last_i > 0 && piles[last_i] < piles[last_i - 1] ){
+        //         last_i--;
+        //     }
+        //     if (last_i < piles.size()-1 && piles[last_i + 1] > piles[last_i]){
+        //         last_i++;
+        //     }
+            
+        //     // cout<<piles[last_i]<<" ";
+        //     piles[last_i] = (piles[last_i]/2)+(piles[last_i]%2);
+        //     // cout<<piles[last_i]<<" ";
+        //     // sort(piles.begin(),piles.end());
+        //     k--;
+        // }
+        // int sum = 0;
+        // for(int i = 0 ; i < piles.size() ; i++){
+        //     sum += piles[i];
+        // }
+        // return sum;
+
+        priority_queue<int>pq(piles.begin(),piles.end());
+        while(k--&&pq.size())
+        {
+            auto temp=pq.top();
+            pq.pop();
+            int val = temp/2 + temp%2;
+            // if(temp%2==0)
+            // {
+            //     val=temp/2;
+            // }
+            // else
+            // {
+            //     val=temp/2+1;
+            // }
+            
+            pq.push(val);
+        }
+        int sum=0;
+        while(pq.size())
+        {
+            sum+=pq.top();
+            pq.pop();
+        }
+        return sum;
+    }
+};
