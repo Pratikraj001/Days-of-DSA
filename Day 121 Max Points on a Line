@@ -1,0 +1,39 @@
+// ( --- https://leetcode.com/problems/max-points-on-a-line/description/ --- )
+
+
+class Solution {
+public:
+    int maxPoints(vector<vector<int>>& points) {
+        
+        int mx = 2;
+        if(points.size() == 1)
+            return 1;
+        // if(points.size() == 2)
+        //     return 2;
+        for(int i = 0 ; i < points.size(); i++){
+            unordered_map<double , int> mp;
+            
+            for(int j = 0 ; j < points.size() ; j++){
+                // double numera = (points[j][1] - points[i][1]);
+                // double denomi = (points[j][0] - points[i][0]);
+                // if(denomi == 0){
+                //     mp[0.00]++;
+                // }
+                // else{
+                //     double temp = numera / denomi;
+                //     mp[temp]++;
+                // }
+                
+                if (j != i) {
+                    mp[atan2(points[j][1] - points[i][1], points[j][0] - points[i][0])]++;
+                }
+            }
+            for (auto [h, count] : mp) {
+                mx = max(mx, count + 1);
+            }
+            // cout<<mx<<"\n";
+
+        }
+        return mx;
+    }
+};
