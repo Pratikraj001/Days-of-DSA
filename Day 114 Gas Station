@@ -1,0 +1,68 @@
+// ( --- https://leetcode.com/problems/gas-station/ --- )
+
+
+// class Solution {
+// public:
+//     bool ispossible(vector<int>& gas , vector<int>& cost, int i){
+//         int len = gas.size() , loop = len;
+//         int travelCostRem = 0 , travelGasRem  = gas[i];
+//         cout<<travelGasRem <<" ";
+//         int j = i;
+//         i++;
+//         while(loop){
+//             i = i%len;
+//             j = j%len;
+//             // cout<<j<<" ";
+//             travelGasRem = travelGasRem - cost[j];
+//             cout<<travelGasRem<<" ";
+//             if(travelGasRem >= 0){
+//                 travelGasRem += gas[i];
+//             }
+//             else{
+//                 return false;
+//             }
+            
+//             i++;
+//             j++;
+//             loop--;
+//         }
+//         return true;
+//     }
+
+//     int canCompleteCircuit(vector<int>& gas, vector<int>& cost) {
+//         for(int i =  0 ; i < gas.size() ; i++){
+//             if(gas[i] >= cost[i]){
+//                 if(ispossible(gas, cost , i)){
+//                     return i;
+//                 }
+//             }
+//         }
+//         return -1;
+//     }
+// };
+
+
+class Solution {
+public:
+    int canCompleteCircuit(vector<int>& gas, vector<int>& cost) {
+        int n=gas.size();
+        int total_gas=0,total_cost=0;
+        int curr_gas=0, starting_point=0;
+        for(int i=0;i<n;i++)
+        {
+            //these two variable are to check if no case is possible
+            total_gas+=gas[i];
+            total_cost+=cost[i];
+            //for checking the total present gas at index i
+            curr_gas+=gas[i]-cost[i];
+            if(curr_gas<0)
+            {
+               //there is a breakdown....so we will start from next point or index
+                starting_point=i+1;
+                //reset our fuel 
+                curr_gas=0;
+            }
+        }
+        return (total_gas<total_cost)?-1:starting_point;     
+    }
+};
