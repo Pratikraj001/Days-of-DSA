@@ -1,0 +1,28 @@
+// ( --- https://leetcode.com/contest/biweekly-contest-91/problems/count-ways-to-build-good-strings/ --- )
+
+
+
+class Solution {
+public:
+    int countGoodStrings(int low, int high, int zero, int one) {
+        vector<long long >result(200005);
+        set<int> st;
+        for(int i = 0 ; i < 10 ; i++){
+            st.insert(i);
+        }
+        long long int mod = 1000000007;
+        result[0] = 1;
+        for(int i = 0; i < 100005 ; i++){
+            result[i+zero] %= mod;
+            result[i+zero] += result[i];
+            result[i+one] %= mod;
+            result[i+one] += result[i];
+        }
+        long long sum = 0;
+        for(int i = low ; i <= high ; i++){
+            sum = (sum + result[i])%mod;
+        }
+        return sum;
+        
+    }
+};
