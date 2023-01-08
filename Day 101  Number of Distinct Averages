@@ -1,0 +1,49 @@
+// ( --- https://leetcode.com/problems/number-of-distinct-averages/ --- )
+
+
+class Solution {
+public:
+    int mxx(vector<int> &nums){
+        int mx = INT_MIN, in;  
+        for(int i = 0 ; i < nums.size() ; i++){
+            
+            if (nums[i] > mx){
+                mx = nums[i];
+                in = i;
+            }
+        }
+        return in;
+    }
+    int mnn(vector<int> &nums){ 
+        int mn = INT_MAX,in;
+        for(int i = 0 ; i < nums.size() ; i++){
+            if (nums[i] < mn){
+                mn = nums[i];
+                in = i;
+            }  
+        }
+        return in;
+    }
+    
+    int distinctAverages(vector<int>& nums) {
+        set<float> st;
+        while(nums.size() != 0){
+            int max_i = mxx(nums);
+            int min_i = mnn(nums);
+            // cout<<max_i<<" "<<min_i<<"\n";
+            float average = (nums[max_i]+nums[min_i])/2.0;
+            st.insert(average);
+            cout<<average<<" ";
+            nums.erase(nums.begin()+max_i);
+            if(max_i < min_i){
+                min_i--;
+            }
+            nums.erase(nums.begin()+min_i);
+            // for(int i = 0 ; i < nums.size();i++){
+            //     cout<<nums[i]<<" ";
+            // }
+            // cout<<"\n";
+        }
+        return st.size();
+    }
+};
