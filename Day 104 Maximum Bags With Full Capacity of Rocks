@@ -1,0 +1,32 @@
+// ( --- https://leetcode.com/problems/maximum-bags-with-full-capacity-of-rocks/ --- )
+
+
+class Solution {
+public:
+    int maximumBags(vector<int>& capacity, vector<int>& rocks, int additionalRocks) {
+        int len = capacity.size();
+        vector<int> diff(len);
+        for(int i = 0 ; i < len ; i++){
+            diff[i] = capacity[i]-rocks[i];
+        }
+        
+        sort(diff.begin(),diff.end());
+
+        int sum = 0;
+        for(int i = 0; i < len;i++){
+            sum += diff[i];
+            if(sum == additionalRocks){
+                return i+1;
+            }
+            else if(sum > additionalRocks){
+                return i;
+            }
+            if(i == len-1 && sum < additionalRocks){
+                return len;
+            }
+           
+            
+        }
+        return 0;  
+    }
+};
