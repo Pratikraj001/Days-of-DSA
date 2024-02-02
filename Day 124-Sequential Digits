@@ -1,0 +1,24 @@
+1291. Sequential Digits
+
+  //( --- https://leetcode.com/problems/sequential-digits/description/?envType=daily-question&envId=2024-02-02 --- )
+
+class Solution {
+public:
+    vector<int> sequentialDigits(int low, int high) {
+        long start = 1, curr = 1, inc = 11, t = 8;
+        vector<int> ans;
+        while(curr <= high){
+            for(int i = 0 ; i < t ; i++){
+                curr += inc;
+                if(curr >= low && curr <= high){
+                    ans.push_back(curr);
+                }
+            }
+            inc = 10*inc+1;
+            start = 10 * start + 10 -t;
+            curr = start;
+            t--;
+        }
+        return ans;
+    }
+};
